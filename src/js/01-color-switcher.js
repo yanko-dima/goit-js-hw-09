@@ -8,6 +8,8 @@ const refs = {
 refs.startBtn.addEventListener('click', onStartBtnClick);
 refs.stopBtn.addEventListener('click', onStopBtnClick);
 
+refs.stopBtn.disabled = true;
+
 function onStartBtnClick() {
     // Дизаблим кнопку старт
     onDisabledStartBtn()
@@ -33,10 +35,12 @@ function onStopBtnClick() {
 
   function onDisabledStartBtn() {
     refs.startBtn.disabled = true;
+    refs.stopBtn.disabled = false;
   };
 
   function onActiveStartBtn() {
     refs.startBtn.disabled = false;
+    refs.stopBtn.disabled = true;
   };
 
   function getRandomHexColor() {
