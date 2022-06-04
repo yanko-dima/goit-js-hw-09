@@ -8,6 +8,7 @@ const refs = {
     hours: document.querySelector('.value[data-hours]'),
     minutes: document.querySelector('.value[data-minutes]'),
     seconds: document.querySelector('.value[data-seconds]'),
+    inputQuery: document.getElementById('datetime-picker')
 };
 let intervalId = null;
 
@@ -44,8 +45,9 @@ const onClose = (selectedDates, dateStr, instance) => {
 
         const startTimer = () => {
             refs.startBtn.disabled = true;
+            flatpickr(refs.inputQuery, disabledOptiots);
         
-            // const startTime = Date.now();
+            const startTime = Date.now();
         
             intervalId = setInterval(() => {
                 const currentTime = Date.now();
@@ -68,8 +70,8 @@ const onClose = (selectedDates, dateStr, instance) => {
     };
 
  }; 
-
-const options = {
+ 
+ const options = {
     enableTime: true,
     time_24hr: true,
     defaultDate: new Date(),
@@ -77,4 +79,11 @@ const options = {
     onClose,
   };
 
-let fp = flatpickr('#datetime-picker', options);
+const disabledOptiots = {
+    clickOpens: false,
+    enableTime: true,
+    time_24hr: true,
+    defaultDate: new Date(),
+};
+
+flatpickr(refs.inputQuery, options);

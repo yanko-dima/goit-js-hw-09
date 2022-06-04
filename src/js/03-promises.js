@@ -7,10 +7,12 @@ let count = null;
 const refs = {
   form: document.querySelector('.form'),
   button: document.querySelector('.form button'),
-}
+};
 
+refs.button.disabled = true;
 refs.form.addEventListener('input', getInputData);
-refs.button.addEventListener('click', onCreatePromiseBtnClick);
+refs.form.addEventListener('submit', onCreatePromiseBtnClick);
+
 
 function createPromise(position, delay) {
   const shouldResolve = Math.random() > 0.3;
@@ -32,6 +34,10 @@ function getInputData(e) {
   step = Number(e.currentTarget.step.value);
   delay = Number(e.currentTarget.delay.value);
   count = Number(e.currentTarget.amount.value);
+
+  if(count && delay && step) {
+    refs.button.disabled = false;
+  }
 };
 
 function onCreatePromiseBtnClick(e) {
